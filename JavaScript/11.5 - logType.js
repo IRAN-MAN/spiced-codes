@@ -1,18 +1,18 @@
 function logType(value) {
     if (typeof value === "undefined") {
         console.log("undefined!");
-    } else if (typeof value === "null") {
+    } else if (value === null) {
         console.log("null!");
     } else if (typeof value === "number") {
         console.log("number!");
+    } else if (typeof value === "bigint") {
+        console.log("bigint!");
     } else if (isNaN(value)) {
         console.log("not a number!");
     } else if (typeof value === "string") {
         console.log("string!");
     } else if (typeof value === "boolean") {
         console.log("boolean!");
-    } else if (typeof value === "bigInt") {
-        console.log("null!");
     } else if (typeof value === "function") {
         console.log("function!");
     } else if (Array.isArray(value)) {
@@ -24,8 +24,5 @@ function logType(value) {
     }
 }
 
-var a = 2;
-var b = "milad";
-var c = null;
-logType(10n);
-logType([a * b]);
+var e = null;
+logType(e);
