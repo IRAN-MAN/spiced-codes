@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 70px;
+    position: relative;
+    /* border: 2px dotted orange; */
+}
+
+#logo {
+    position: absolute;
+    height: 40px;
+    left: 40px;
+    margin-top: 12.5px;
+}
+
+#hamburger {
+    position: absolute;
+    right: 40px;
+    height: 40px;
+    margin-top: 12.5px;
+}
