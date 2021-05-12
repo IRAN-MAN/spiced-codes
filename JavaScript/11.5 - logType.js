@@ -5,7 +5,7 @@ function logType(value) {
     } else if (value === null) {
         console.log("null!");
         return;
-    } else if (isNaN(value) && typeof value === "number") {
+    } else if (Number.isNaN(value)) {
         console.log("not a number!");
         return;
     } else if (typeof value === "number") {
