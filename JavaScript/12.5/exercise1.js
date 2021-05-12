@@ -3,8 +3,7 @@ function sum() {
     for (var i in arguments) {
         sum += arguments[i];
     }
-    console.log(sum);
-    return;
+    return sum;
 }
 
 sum(5, 10, 5, 7, -2);
