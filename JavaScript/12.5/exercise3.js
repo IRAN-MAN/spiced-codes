@@ -1,5 +1,5 @@
 function checkNumber(num) {
-    if (num < 0 || num === 0 || typeof num !== "number") {
+    if (num <= 0 || typeof num !== "number") {
         return "ERROR";
     } else if (num >= 1000000) {
         return num;
