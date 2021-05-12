@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Times New Roman, Times, serif;
 }
 
 header {
@@ -22,4 +23,36 @@ header {
     right: 40px;
     height: 40px;
     margin-top: 12.5px;
+}
+
+#showcase {
+    background: url("../assets/spices.jpg") no-repeat;
+    background-size: cover;
+    text-align: center;
+    min-height: 400px;
+    padding-top: 150px;
+}
+
+h1 {
+    color: white;
+    font-size: 40px;
+}
+
+button {
+    width: 180px;
+    height: 30px;
+    font-size: large;
+    border-radius: 15px;
+    border: 2px solid darkorange;
+    background-color: yellow;
+    color: darkorange;
+    margin-top: 15px;
+    font-weight: bold;
+}
+div > img {
+    width: 30px;
+}
+
+main {
+    background-color: gainsboro;
 }
