@@ -4,6 +4,7 @@ function sum() {
         sum += arguments[i];
     }
     console.log(sum);
+    return;
 }
 
 sum(5, 10, 5, 7, -2);
