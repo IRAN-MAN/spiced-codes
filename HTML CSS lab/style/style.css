@@ -49,10 +49,63 @@ button {
     margin-top: 15px;
     font-weight: bold;
 }
-div > img {
+
+.icon {
     width: 30px;
 }
 
 main {
     background-color: gainsboro;
+    padding-top: 40px;
+    height: 300px;
+    position: relative;
+}
+
+#cat-container {
+    position: absolute;
+    left: 15%;
+    width: 30%;
+}
+
+#cat {
+    position: absolute;
+    top: 10%;
+    right: 105%;
+}
+
+#world-container {
+    position: absolute;
+    right: 10%;
+    width: 30%;
+}
+
+#world {
+    position: absolute;
+    right: 105%;
+}
+
+#swim-container {
+    position: absolute;
+    left: 15%;
+    top: 60%;
+    width: 30%;
+}
+
+#swim {
+    position: absolute;
+    top: 5%;
+    right: 105%;
+}
+
+#columns-container {
+    position: absolute;
+    right: 10%;
+    top: 60%;
+    width: 30%;
+}
+
+#columns {
+    position: absolute;
+    top: 5%;
+    right: 105%;
 }
