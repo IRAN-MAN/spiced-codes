@@ -109,3 +109,17 @@ main {
     top: 5%;
     right: 105%;
 }
+
+footer {
+    height: 30px;
+    background-color: rgb(109, 108, 108);
+    position: relative;
+}
+
+.footer {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 25%;
+    left: 5%;
+}
