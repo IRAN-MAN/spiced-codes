@@ -123,3 +123,46 @@ footer {
     top: 25%;
     left: 5%;
 }
+
+@media screen and (max-width: 420px) {
+    #logo {
+        width: 100px;
+        height: auto;
+    }
+    #hamburger {
+        margin-top: 5px;
+        height: 30px;
+    }
+    header {
+        height: 40px;
+    }
+
+    h1 {
+        color: whitesmoke;
+    }
+
+    button {
+        text: "whatever";
+    }
+
+    #cat-container {
+        width: 80%;
+    }
+    #world-container {
+        width: 80%;
+        top: 30%;
+        right: 5%;
+    }
+    #swim-container {
+        width: 80%;
+        top: 50%;
+    }
+    #columns-container {
+        width: 80%;
+        top: 75%;
+        right: 5%;
+    }
+    main {
+        height: 400px;
+    }
+}
