@@ -6,6 +6,40 @@
     transform: translateX(150px);
 }
 
+.eye:first-of-type {
+    width: 2px;
+    height: 2px;
+    border: 5px solid black;
+    border-radius: 50%;
+    transform: translateX(20px) translateY(30px);
+}
+
+.eye:nth-of-type(2) {
+    width: 2px;
+    height: 2px;
+    border: 5px solid black;
+    border-radius: 50%;
+    transform: translateX(60px) translateY(18px);
+}
+
+.nose {
+    height: 30px;
+    width: 0;
+    border: 1px solid black;
+    background-color: black;
+    transform: translateX(45px) translateY(10px);
+}
+
+.mouth {
+    height: 50px;
+    width: 50px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 40px;
+    transform: translateX(23px) translateY(-25px);
+}
 .neck {
     border: 3px solid black;
     height: 50px;
@@ -52,4 +86,17 @@
     width: 150px;
     transform: translateX(180px) translateY(20px) rotate(45deg);
     background-color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .mouth {
+        height: 50px;
+        width: 40px;
+        border: 2px solid black;
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+        border-radius: 40px;
+        transform: translateX(27px) translateY(15px);
+    }
 }
