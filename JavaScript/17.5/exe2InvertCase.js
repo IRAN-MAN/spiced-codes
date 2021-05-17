@@ -8,7 +8,7 @@ function invertCase(string) {
             inverted.push(element.toUpperCase());
         }
     });
-    return inverted.toString();
+    return inverted.toString(); // or => return inverted.join('');
 }
 
 invertCase("aaaV3VVDsss43s");
