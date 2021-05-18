@@ -9,9 +9,8 @@ body {
 #headlines {
     white-space: nowrap;
     position: absolute;
-    overflow: hidden;
     width: 600px;
-    /* left: 100%; */
+    left: 100%;
 }
 
 #headlines a {
