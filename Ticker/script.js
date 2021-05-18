@@ -1,6 +1,6 @@
 (function () {
     var headlines = document.getElementById("headlines");
-    var links = headlines.getElementsByTagName("A"); // to have a synced list of elements
+    var links = headlines.getElementsByTagName("A");
     var left = headlines.offsetLeft;
     moveHeadlines();
     function moveHeadlines() {
@@ -9,7 +9,7 @@
             left += links[0].offsetWidth;
             headlines.appendChild(links[0]);
         }
-        links[0].style.left = headlines.offsetWidth + "px";
+        headlines.style.left = left + "px";
 
         requestAnimationFrame(moveHeadlines);
     }
