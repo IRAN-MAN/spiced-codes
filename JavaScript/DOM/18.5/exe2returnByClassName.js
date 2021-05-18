@@ -3,8 +3,10 @@
  that have the class that was passed in. */
 
 function returnByClassName(className) {
-    // var elements = [...document.getElementsByClassName("className")];
+    // var elements = [...document.getElementsByClassName(className)];
     var elements = Array.from(document.getElementsByClassName(className));
+
+    console.log(Array.isArray(elements)); // logs true for both cases above
     return elements;
 }
 
