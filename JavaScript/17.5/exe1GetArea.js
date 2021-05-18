@@ -1,26 +1,66 @@
+/* Write a constructor called Rectangle that accepts two numbers (width and height) as parameters. 
+Rectangle instances should have a method called getArea that returns the instance's width 
+multiplied by its height. Write another constructor called Square that accepts one number 
+(which will serve as both width and the height) as a parameter. 
+Instances of Square should also have a getArea method but you should not rewrite 
+the getArea function you wrote for Rectangle. Square instances should use the same getArea method 
+that Rectangle instances do.
+*/
+
+// My Version
 function Rectangle(width, height) {
     this.width = width;
     this.height = height;
 }
 
 Rectangle.prototype.getArea = function () {
-    if (this instanceof Square) {
-        // console.log(this.widthAndHeight * this.widthAndHeight);
-        return this.widthAndHeight * this.widthAndHeight;
-    } else {
-        // console.log(this.width * this.height);
-        return this.width * this.height;
-    }
+    return this.width * this.height;
 };
 
 function Square(widthAndHeight) {
-    this.widthAndHeight = widthAndHeight;
+    this.width = widthAndHeight;
+    this.height = widthAndHeight;
+    this.getArea = new Rectangle().getArea;
 }
-
-Square.prototype.getArea = Rectangle.prototype.getArea;
 
 var rect = new Rectangle(4, 5);
 rect.getArea();
 
 var square = new Square(4);
 square.getArea();
+
+/* Version 1 
+
+function Rectangle(w, h) {
+    this.width = w;
+    this.height = h;
+    this.getArea = getArea;
+}
+
+function Square(n) {
+    this.width = n;
+    this.height = n;
+    this.getArea = getArea;
+}
+
+function getArea() {
+    return this.width * this.height;
+}
+
+version 2
+
+function Rectangle(w, h) {
+    this.width = w;
+    this.height = h;
+    this.getArea = function() {
+        return this.width * this.height;
+    };
+}
+
+function Square(n) {
+    this.width = n;
+    this.height = n;
+}
+
+Square.prototype.getArea = new Rectangle().getArea;
+*/
