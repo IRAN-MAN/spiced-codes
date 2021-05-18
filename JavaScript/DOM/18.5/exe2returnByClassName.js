@@ -5,7 +5,7 @@
 function returnByClassName(className) {
     // var elements = [...document.getElementsByClassName("className")];
     var elements = Array.from(document.getElementsByClassName(className));
-    return Array.isArray(elements); // in both cases above logs true
+    return elements;
 }
 
 returnByClassName("change");
