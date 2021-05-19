@@ -21,14 +21,15 @@
     var right =
         window.innerWidth -
         (bottomHeadlines.offsetLeft + bottomHeadlines.offsetWidth);
-
-    console.log(right);
     moveBottomHeadlines();
     function moveBottomHeadlines() {
+        var lastChiled = bottomHeadlines.lastElementChild;
         right--;
-        if (right <= -bottomLinks.length - (1).offsetWidth) {
-            right += bottomLinks.length - (1).offsetWidth;
-            bottomHeadlines.appendChild(bottomLinks.length - 1);
+        // problem lays here
+        if (right <= lastChiled.offsetWidth) {
+            right += lastChiled.offsetWidth;
+            bottomHeadlines.removeChild(lastChiled);
+            bottomLinks[0].insertBefore(lastChiled);
         }
         bottomHeadlines.style.right = right + "px";
 
