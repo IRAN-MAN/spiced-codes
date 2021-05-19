@@ -18,14 +18,17 @@
 (function () {
     var bottomHeadlines = document.getElementById("headlines-bottom");
     var bottomLinks = bottomHeadlines.getElementsByClassName("bottom-links");
-    var right = bottomHeadlines.offsetRight; // guess the problem lays here
+    var right =
+        window.innerWidth -
+        (bottomHeadlines.offsetLeft + bottomHeadlines.offsetWidth);
+
     console.log(right);
     moveBottomHeadlines();
     function moveBottomHeadlines() {
         right--;
-        if (right <= -bottomLinks[0].offsetWidth) {
-            right += bottomLinks[0].offsetWidth;
-            bottomHeadlines.appendChild(bottomLinks[0]);
+        if (right <= -bottomLinks.length - (1).offsetWidth) {
+            right += bottomLinks.length - (1).offsetWidth;
+            bottomHeadlines.appendChild(bottomLinks.length - 1);
         }
         bottomHeadlines.style.right = right + "px";
 
