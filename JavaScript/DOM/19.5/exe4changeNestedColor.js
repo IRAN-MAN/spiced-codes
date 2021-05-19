@@ -7,7 +7,7 @@ change to a randomly selected background color but the outer element's backgroun
 change at all.
 */
 
-var outsideBox = document.getElementById("exe4");
+var outsideBox = document.getElementById("exe4-outside-box");
 var insideBox = document.getElementById("inside-box");
 
 outsideBox.addEventListener("click", outsideBoxHandler);
