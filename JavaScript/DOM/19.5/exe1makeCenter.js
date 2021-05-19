@@ -10,6 +10,6 @@ var div = document.getElementById("div-center");
 document.addEventListener("mousemove", documentHandler);
 
 function documentHandler(event) {
-    div.style.top = event.clientY - 50 + "px";
-    div.style.left = event.clientX - 50 + "px";
+    div.style.top = event.clientY - div.offsetHeight / 2 + "px";
+    div.style.left = event.clientX - div.offsetWidth / 2 + "px";
 }
