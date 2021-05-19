@@ -2,6 +2,25 @@
     var topHeadlines = document.getElementById("headlines-top");
     var topLinks = topHeadlines.getElementsByClassName("top-links");
     var left = topHeadlines.offsetLeft;
+    var animationId;
+
+    function addHoverEffectToLinks() {
+        for (var i = 0; i < topLinks.length; i++) {
+            var link = topLinks[i];
+            link.addEventListener("mouseenter", function () {
+                this.style.textDecoration = "underline";
+                this.style.color = "blue";
+                cancelAnimationFrame(animationId);
+            });
+            link.addEventListener("mouseleave", function () {
+                this.style.textDecoration = "";
+                this.style.color = "";
+                moveHeadlines();
+            });
+        }
+    }
+
+    addHoverEffectToLinks();
     moveHeadlines();
     function moveHeadlines() {
         left--;
@@ -11,7 +30,7 @@
         }
         topHeadlines.style.left = left + "px";
 
-        requestAnimationFrame(moveHeadlines);
+        animationId = requestAnimationFrame(moveHeadlines);
     }
 })();
 
