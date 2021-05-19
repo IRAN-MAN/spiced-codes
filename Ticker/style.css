@@ -51,5 +51,6 @@ body {
     border: 1px solid black;
     overflow: hidden;
     height: 1.6em;
-    top: 380px;
+    top: 385px;
+    box-shadow: 0 -2px 5px 2px gray;
 }
