@@ -8,7 +8,7 @@ change at all.
 */
 
 var outsideBox = document.getElementById("exe4-outside-box");
-var insideBox = document.getElementById("inside-box");
+// var insideBox = document.getElementById("inside-box");
 
 outsideBox.addEventListener("click", outsideBoxHandler);
 
