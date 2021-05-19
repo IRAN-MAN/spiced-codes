@@ -17,19 +17,22 @@
 
 (function () {
     var bottomHeadlines = document.getElementById("headlines-bottom");
-    var bottomLinks = bottomHeadlines.getElementsByClassName("bottom-links");
+    // var bottomLinks = bottomHeadlines.getElementsByClassName("bottom-links");
     var right =
         window.innerWidth -
         (bottomHeadlines.offsetLeft + bottomHeadlines.offsetWidth);
     moveBottomHeadlines();
     function moveBottomHeadlines() {
-        var lastChiled = bottomHeadlines.lastElementChild;
+        var lastChild = bottomHeadlines.lastElementChild;
         right--;
-        // problem lays here
-        if (right <= lastChiled.offsetWidth) {
-            right += lastChiled.offsetWidth;
-            bottomHeadlines.removeChild(lastChiled);
-            bottomLinks[0].insertBefore(lastChiled);
+
+        if (right <= lastChild.offsetWidth) {
+            right += lastChild.offsetWidth;
+            bottomHeadlines.removeChild(bottomHeadlines.lastChild);
+            bottomHeadlines.insertBefore(
+                bottomHeadlines.lastChild,
+                bottomHeadlines.firstChild
+            );
         }
         bottomHeadlines.style.right = right + "px";
 
