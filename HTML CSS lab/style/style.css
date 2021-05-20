@@ -31,7 +31,7 @@ header {
 }
 nav {
     padding: 30px 20px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -62,7 +62,7 @@ ul li a {
 }
 
 .backdrop {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

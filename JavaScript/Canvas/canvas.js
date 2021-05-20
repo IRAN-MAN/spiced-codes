@@ -1,6 +1,7 @@
 var ctxS = document.getElementById("canv-small").getContext("2d");
 var ctxB = document.getElementById("canv-big").getContext("2d");
 var smallConvas = document.getElementById("canv-small");
+var leftKeyCount = 0;
 
 ctxS.beginPath();
 ctxS.arc(110, 50, 40, 0, Math.PI * 2, true); // head
@@ -39,12 +40,23 @@ var frames = {
         ctxB.clearRect(0, 0, 300, 300);
         ctxB.drawImage(smallConvas, 70, 40);
     },
+    frame4: function frame4() {
+        ctxB.clearRect(0, 0, 300, 300);
+        ctxB.drawImage(smallConvas, 80, 50);
+    },
+    frame5: function frame5() {
+        ctxB.clearRect(0, 0, 300, 300);
+        ctxB.drawImage(smallConvas, 90, 60);
+    },
 };
 
 document.addEventListener("keydown", keydownHandler);
 
 function keydownHandler(event) {
+    // console.log(frames);
     if (event.keyCode == 39) {
+        leftKeyCount++;
+
         return frames.frame1();
     }
     if (event.keyCode == 37) {
