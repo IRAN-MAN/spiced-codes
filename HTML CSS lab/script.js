@@ -14,3 +14,10 @@ elementsThatToggle.forEach(function (element) {
         backDrop.classList.toggle("backdrop");
     });
 });
+
+document.body.addEventListener("keydown", function (event) {
+    if (event.key == "Escape") {
+        nav.classList.remove("open");
+        backDrop.classList.remove("backdrop");
+    }
+});
