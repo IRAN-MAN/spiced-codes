@@ -15,7 +15,7 @@ elementsThatToggle.forEach(function (element) {
     });
 });
 
-document.body.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key == "Escape") {
         nav.classList.remove("open");
         backDrop.classList.remove("backdrop");

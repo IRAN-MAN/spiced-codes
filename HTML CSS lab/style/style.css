@@ -54,6 +54,7 @@ ul li {
 nav ul li:last-of-type {
     font-size: 0.6rem;
 }
+
 ul li a {
     margin-right: 10vw;
     text-decoration: none;
