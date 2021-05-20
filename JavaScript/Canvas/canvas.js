@@ -26,14 +26,29 @@ ctxS.closePath();
 
 ctxB.drawImage(smallConvas, 40, 40);
 
+var frames = {
+    frame1: function frame1() {
+        ctxB.clearRect(0, 0, 300, 300);
+        ctxB.drawImage(smallConvas, 50, 40);
+    },
+    frame2: function frame2() {
+        ctxB.clearRect(0, 0, 300, 300);
+        ctxB.drawImage(smallConvas, 40, 40);
+    },
+    frame3: function frame3() {
+        ctxB.clearRect(0, 0, 300, 300);
+        ctxB.drawImage(smallConvas, 70, 40);
+    },
+};
+
 document.addEventListener("keydown", keydownHandler);
 
 function keydownHandler(event) {
     if (event.keyCode == 39) {
-        ctxB.clearRect(0, 0, 300, 300);
-        ctxB.drawImage(smallConvas, 50, 40);
-        ctxB.clearRect(0, 0, 300, 300);
-        ctxB.drawImage(smallConvas, 60, 40);
+        return frames.frame1();
+    }
+    if (event.keyCode == 37) {
+        return frames.frame2();
     }
 }
 /* 
