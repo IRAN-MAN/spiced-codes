@@ -22,7 +22,7 @@
     background-size: cover;
     background-position: center;
     transition-property: transform;
-    transform: translateX(100%);
+    transform: translateX(-100%);
 }
 
 .kitty.onscreen {
@@ -31,7 +31,7 @@
 }
 
 .kitty.exit {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition-duration: 1s;
 }
 
