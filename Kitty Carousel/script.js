@@ -10,23 +10,25 @@ function updateDots() {
     });
 }
 
-dots.forEach(function (dot, index) {
-    dot.addEventListener("click", function () {
-        for (var i = 0; i < kitties.length; i++) {
-            if (kitties[i].classList.contains("onscreen")) {
-                kitties[i].classList.remove("onscreen");
-                kitties[i].classList.add("exit");
-            }
-        }
-        kitties[index].classList.add("onscreen");
-        for (i = 0; i < dots.length; i++) {
-            if (dots[i].classList.contains("current")) {
-                dots[i].classList.remove("current");
-            }
-        }
-        dot.classList.add("current");
-    });
-});
+var exitKitty = document.getElementsByClassName("exit");
+console.log(exitKitty);
+// dots.forEach(function (dot, index) {
+//     dot.addEventListener("click", function () {
+//         for (var i = 0; i < kitties.length; i++) {
+//             if (kitties[i].classList.contains("onscreen")) {
+//                 kitties[i].classList.remove("onscreen");
+//                 kitties[i].classList.add("exit");
+//             }
+//         }
+//         kitties[index].classList.add("onscreen");
+//         for (i = 0; i < dots.length; i++) {
+//             if (dots[i].classList.contains("current")) {
+//                 dots[i].classList.remove("current");
+//             }
+//         }
+//         dot.classList.add("current");
+//     });
+// });
 
 function moveKitties() {
     kitties[kittyIndex].classList.remove("onscreen");
@@ -45,13 +47,13 @@ carousel.addEventListener("transitionend", function (event) {
     }
     event.target.classList.remove("exit");
     setTimeout(function () {
-        // moveKitties();
-        // updateDots();
+        moveKitties();
+        updateDots();
     }, 1000);
 });
 
 setTimeout(function () {
-    // moveKitties();
+    moveKitties();
 }, 1000);
 
 //initCarousel('carousel', 2000)
