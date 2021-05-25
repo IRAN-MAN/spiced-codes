@@ -50,9 +50,10 @@ for (var i = 0; i < dots.length; i++) {
 
 document.addEventListener("swiped-left", function () {
     console.log("swiped left");
-
+    if (animating) {
+        return;
+    }
     clearTimeout(timer);
-    kittyIndex = nextKittyIndex;
     moveKitties();
 });
 
