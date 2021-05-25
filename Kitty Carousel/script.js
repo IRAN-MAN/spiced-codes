@@ -1,39 +1,19 @@
 var carousel = document.getElementById("carousel");
 var kitties = carousel.querySelectorAll(".kitty");
 var dots = carousel.querySelectorAll(".dots li");
+var delay = 2000;
 var kittyIndex = 0;
 var nextKittyIndex = 1;
-
-function updateDots() {
-    dots.forEach(function (dot, index) {
-        dot.classList.toggle("current", kittyIndex === index);
-    });
-}
-
-var exitKitty = document.getElementsByClassName("exit");
-console.log(exitKitty);
-// dots.forEach(function (dot, index) {
-//     dot.addEventListener("click", function () {
-//         for (var i = 0; i < kitties.length; i++) {
-//             if (kitties[i].classList.contains("onscreen")) {
-//                 kitties[i].classList.remove("onscreen");
-//                 kitties[i].classList.add("exit");
-//             }
-//         }
-//         kitties[index].classList.add("onscreen");
-//         for (i = 0; i < dots.length; i++) {
-//             if (dots[i].classList.contains("current")) {
-//                 dots[i].classList.remove("current");
-//             }
-//         }
-//         dot.classList.add("current");
-//     });
-// });
+var timer;
+var animating;
 
 function moveKitties() {
+    animating = true;
+    dots[kittyIndex].classList.remove("current");
     kitties[kittyIndex].classList.remove("onscreen");
     kitties[kittyIndex].classList.add("exit");
     kitties[nextKittyIndex].classList.add("onscreen");
+    dots[nextKittyIndex].classList.add("current");
     kittyIndex = nextKittyIndex;
     if (kittyIndex === kitties.length - 1) {
         nextKittyIndex = 0;
@@ -45,15 +25,29 @@ carousel.addEventListener("transitionend", function (event) {
     if (!event.target.classList.contains("exit")) {
         return;
     }
+    animating = false;
     event.target.classList.remove("exit");
-    setTimeout(function () {
+    timer = setTimeout(function () {
         moveKitties();
-        updateDots();
-    }, 1000);
+    }, delay);
 });
+
+for (var i = 0; i < dots.length; i++) {
+    (function (i) {
+        dots[i].addEventListener("click", function (event) {
+            if (event.target.classList.contains("current")) {
+                return;
+            }
+            if (animating) {
+                return;
+            }
+            clearTimeout(timer);
+            nextKittyIndex = i;
+            moveKitties();
+        });
+    })(i);
+}
 
 setTimeout(function () {
     moveKitties();
-}, 1000);
-
-//initCarousel('carousel', 2000)
+}, delay);
