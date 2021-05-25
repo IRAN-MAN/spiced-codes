@@ -1,7 +1,7 @@
 var carousel = document.getElementById("carousel");
 var kitties = carousel.querySelectorAll(".kitty");
 var dots = carousel.querySelectorAll(".dots li");
-var delay = 2000;
+var delay = 3000;
 var kittyIndex = 0;
 var nextKittyIndex = 1;
 var timer;
@@ -47,6 +47,14 @@ for (var i = 0; i < dots.length; i++) {
         });
     })(i);
 }
+
+document.addEventListener("swiped-left", function () {
+    console.log("swiped left");
+
+    clearTimeout(timer);
+    kittyIndex = nextKittyIndex;
+    moveKitties();
+});
 
 setTimeout(function () {
     moveKitties();
