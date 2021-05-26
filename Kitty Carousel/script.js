@@ -6,6 +6,8 @@ var kittyIndex = 0;
 var nextKittyIndex = 1;
 var timer;
 var animating;
+var touchStart;
+var touchEnd;
 
 function moveKitties() {
     animating = true;
@@ -48,14 +50,30 @@ for (var i = 0; i < dots.length; i++) {
     })(i);
 }
 
-document.addEventListener("swiped-left", function () {
-    console.log("swiped left");
-    if (animating) {
-        return;
-    }
-    clearTimeout(timer);
-    moveKitties();
+carousel.addEventListener("touchstart", function (event) {
+    // console.log(event.touches[0]);
+    touchStart = event.touches[0].clientX;
+    // console.log(touchStart);
 });
+
+carousel.addEventListener("touchend", function (event) {
+    // console.log(event);
+    touchEnd = event.changedTouches[0].clientX;
+    // console.log(touchEnd);
+    if (touchEnd < touchStart) {
+        // console.log("swiped left");
+        if (animating) {
+            return;
+        }
+        clearTimeout(timer);
+        moveKitties();
+    }
+});
+
+// document.addEventListener("swiped-left", function () {
+//     console.log("swiped left");
+
+// });
 
 setTimeout(function () {
     moveKitties();
