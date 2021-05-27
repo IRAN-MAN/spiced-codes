@@ -38,11 +38,14 @@
         .on("keydown", function (event) {
             switch (event.keyCode) {
                 case 40: //Down Arrow
-                    var $index = $(".highlighted").index();
+                    var $highlightedIndex = $(".highlighted").index();
                     // console.log($index);
                     if ($(".highlighted").length == 0) {
                         $results.children().first().addClass("highlighted");
-                    } else if ($index !== $(".individual-result").length - 1) {
+                    } else if (
+                        $highlightedIndex !==
+                        $(".individual-result").length - 1
+                    ) {
                         $(".highlighted").next().addClass("highlighted");
                         $(".highlighted").first().removeClass("highlighted");
                     }
@@ -50,7 +53,11 @@
                 case 38: //Up Arrow
                     if ($(".highlighted").length == 0) {
                         $results.children().last().addClass("highlighted");
-                    } else if ($index !== $(".individual-result").eq(0)) {
+                    } else if (
+                        $(".individual-result").first().hasClass("highlighted")
+                    ) {
+                        break;
+                    } else {
                         $(".highlighted").prev().addClass("highlighted");
                         $(".highlighted").last().removeClass("highlighted");
                     }
