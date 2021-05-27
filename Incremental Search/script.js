@@ -2,42 +2,78 @@
     var $field = $("#search");
     var $results = $("#results");
 
-    $field.on("input", function () {
-        var $val = $field.val();
-        // console.log($val);
-        if ($val.length == 0) {
-            return;
-        }
-        var matches = [];
-        // console.log(matches);
-        for (var i = 0; i < countries.length; i++) {
-            if (countries[i].toLowerCase().indexOf($val.toLowerCase()) == 0) {
-                matches.push(countries[i]);
-                if (matches.length == 4) {
-                    break;
+    $field
+        .on("input", function () {
+            var $val = $field.val();
+            // console.log($val);
+            if ($val.length == 0) {
+                return;
+            }
+            var matches = [];
+            // console.log(matches);
+            for (var i = 0; i < countries.length; i++) {
+                if (
+                    countries[i].toLowerCase().indexOf($val.toLowerCase()) == 0
+                ) {
+                    matches.push(countries[i]);
+                    if (matches.length == 4) {
+                        break;
+                    }
                 }
             }
-        }
-        if (matches.length == 0) {
-            var noResultsMessage = "<div>No Results!</div>";
-            $results.html(noResultsMessage);
-        } else {
-            var upToFourResults = "";
-            for (var j = 0; j < matches.length; j++) {
-                upToFourResults += "<div class=individual-result>";
-                upToFourResults += matches[j];
-                upToFourResults += "</div>";
+            if (matches.length == 0) {
+                var noResultsMessage = "<div>No Results!</div>";
+                $results.html(noResultsMessage);
+            } else {
+                var upToFourResults = "";
+                for (var j = 0; j < matches.length; j++) {
+                    upToFourResults += "<div class=individual-result>";
+                    upToFourResults += matches[j];
+                    upToFourResults += "</div>";
+                }
+                // console.log(upToFourResults);
+                $results.html(upToFourResults);
             }
-            // console.log(upToFourResults);
-            $results.html(upToFourResults);
-        }
-    });
+        })
+        .on("keydown", function (event) {
+            switch (event.keyCode) {
+                case 40: //Down Arrow
+                    var $index = $(".highlighted").index();
+                    // console.log($index);
+                    if ($(".highlighted").length == 0) {
+                        $results.children().first().addClass("highlighted");
+                    } else if ($index !== $(".individual-result").length - 1) {
+                        $(".highlighted").next().addClass("highlighted");
+                        $(".highlighted").first().removeClass("highlighted");
+                    }
+                    break;
+                case 38: //Up Arrow
+                    if ($(".highlighted").length == 0) {
+                        $results.children().last().addClass("highlighted");
+                    } else if ($index !== $(".individual-result").eq(0)) {
+                        $(".highlighted").prev().addClass("highlighted");
+                        $(".highlighted").last().removeClass("highlighted");
+                    }
+                    break;
+                case 13:
+                    var $resultValue = $(".highlighted").html();
+                    $field.val($resultValue);
+                    $results.html("");
+                    break;
+            }
+        });
 
-    $("#results").on("mouseover", ".individual-result", function (event) {
-        $(".highlighted").removeClass("highlighted");
-        $(event.currentTarget).addClass("highlighted");
-        // console.log(event.currentTarget);
-    });
+    $("#results")
+        .on("mouseover", ".individual-result", function (event) {
+            $(".highlighted").removeClass("highlighted");
+            $(event.currentTarget).addClass("highlighted");
+            // console.log(event.currentTarget);
+        })
+        .on("mousedown", ".individual-result", function (event) {
+            var $resultValue = $(event.currentTarget).html();
+            $field.val($resultValue);
+            $results.html("");
+        });
 
     var countries = [
         "Afghanistan",
