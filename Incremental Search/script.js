@@ -61,6 +61,12 @@
                     $results.html("");
                     break;
             }
+        })
+        .on("focus", function () {
+            $field.trigger("input");
+        })
+        .on("blur", function () {
+            $results.html("");
         });
 
     $("#results")
