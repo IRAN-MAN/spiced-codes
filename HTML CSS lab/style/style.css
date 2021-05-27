@@ -7,6 +7,7 @@
 body {
     font-size: 16px;
 }
+
 header {
     height: 9vw;
     position: relative;
@@ -68,6 +69,46 @@ ul li a {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+    height: 100vh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 40%;
+
+    position: relative;
+}
+
+.modal .modal-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+}
+
+.modal p {
+    margin: 1em auto;
+}
+
+.no-scroll {
+    overflow-y: hidden;
 }
 
 #showcase {
