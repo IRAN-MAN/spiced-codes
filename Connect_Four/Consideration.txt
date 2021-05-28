@@ -1,0 +1,18 @@
+1. create the board ( 6 rows, 7 columns  )
+	* a container to wrap the board 
+	* 7 divs => columns
+		6 divs => rows > 1 div circle
+2. style the board 
+	* backgorund-colors
+	* circles => flex, flex-wrap
+	* classes => current palayer, palayer 1, player 2
+3. JavaScript
+	* cache the selectorthat needed => board, columns, 
+	* eventListener on click on columns
+		* cache the columnPositions and row index(use function)
+			function 
+	
+		
+	
+	
+			
