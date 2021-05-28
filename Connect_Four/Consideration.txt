@@ -1,18 +1,36 @@
 1. create the board ( 6 rows, 7 columns  )
 	* a container to wrap the board 
 	* 7 divs => columns
-		6 divs => rows > 1 div circle
+	* 6 divs => rows > 1 div circle
 2. style the board 
 	* backgorund-colors
-	* circles => flex, flex-wrap
-	* classes => current palayer, palayer 1, player 2
+	* flex, flex-wrap
+	* classes => .palayer-1, .player-2, .board, .circle
 3. JavaScript
-	* cache the selectorthat needed => board, columns, 
+	* cache the selectors that needed => board, columns, 
+    * keep track of current player
+    * switch between players 1 and 2 (switchPlayers function)
+        * switchPlayers 
+            * if the currentPlayer is 1 then switch it to 2 otherwise switch to 1
 	* eventListener on click on columns
-		* cache the columnPositions and row index(use function)
-			function 
+        * get the targeted column index
+		* update the board with new token droped in selectedColumn and return the row index (dropToken function)
+            * dropToken 
+                * pass the correct arguments (columnHolders)
+                * find the first available columnHolder (check if its taken or not)
+                    * loop through the target coloumn and check if any of them has player's class (loop reverse)            
+                * if there is one, assign the corresponding current player's class and return its index (i)
+                * if there's no empty holders on the column, return -1 (to use as preventing user to drop token on a full column)
+            
+    
+    
 	
-		
+
 	
 	
-			
+	* diagonam  wiinning check
+        *getDiagonalPositions and assign to diagonalPosition
+            * use columnIndex
+            * cache all columnHolders
+            * get the index of current columnHolder 0 - 41
+            * have an array of diagonal positions which has 4 numbers that are winners
