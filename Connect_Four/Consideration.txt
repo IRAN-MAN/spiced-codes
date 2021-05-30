@@ -11,10 +11,10 @@
     * keep track of current player
     * switch between players 1 and 2 (switchPlayers function)
         * switchPlayers 
-            * if the currentPlayer is 1 then switch it to 2 otherwise switch to 1
+        * if the currentPlayer is 1 then switch it to 2 otherwise switch to 1
 	* eventListener on click on columns
         * get the targeted column index
-		* update the board with new token droped in selectedColumn and return the row index (dropToken function)
+	* update the board with new token droped in selectedColumn and return the row index (dropToken function)
             * dropToken 
                 * pass the correct arguments (columnHolders)
                 * find the first available columnHolder (check if its taken or not)
@@ -23,14 +23,9 @@
                 * if there's no empty holders on the column, return -1 (to use as preventing user to drop token on a full column)
             
     
-    
+        * check if winning condition is met for both rows and columns
 	
 
 	
 	
-	* diagonam  wiinning check
-        *getDiagonalPositions and assign to diagonalPosition
-            * use columnIndex
-            * cache all columnHolders
-            * get the index of current columnHolder 0 - 41
-            * have an array of diagonal positions which has 4 numbers that are winners
+

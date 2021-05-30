@@ -11,6 +11,9 @@
         // cache the token holders to pass to the dropToken function
         var $columnsHolders = $selectedColumn.find(".holder");
 
+        // check if the player has 4 tokens in vertical holders
+        checkForWinner($columnsHolders);
+
         // get the index of targeted column
         var $columnIndex = $selectedColumn.index();
 
@@ -21,8 +24,46 @@
         if (rowIndex < 0) {
             return;
         }
+
+        // get the horizantal holders using its index
+        var $rowHolders = getRowHolders(rowIndex);
+
+        checkForWinner($rowHolders);
+
         switchPlayers();
     });
+
+    function checkForWinner($holders) {
+        var count = 0;
+        for (var i = 0; i < $holders.length; i++) {
+            var $currentHolder = $holders.eq(i);
+            // if there's a holder with the current player class, add 1 to the variable
+            if ($currentHolder.hasClass("player-" + currentPlayer)) {
+                count++;
+                console.log("player-" + currentPlayer, count);
+                if (count === 4) {
+                    console.log("Player " + currentPlayer + " has won!");
+                    // setTimeout(function () {
+                    //     window.location.reload();
+                    // }, 1000);
+                }
+            } else {
+                count = 0;
+            }
+        }
+    }
+
+    function getRowHolders(rowIndex) {
+        //empty jquery object
+        var $rowHolder = $();
+        // loop over the columns, add the holders at rowIndex to the $rowsHolder
+        for (var i = 0; i < $columns.length; i++) {
+            var $column = $columns.eq(i);
+            var $holderPos = $column.find(".holder").eq(rowIndex);
+            $rowHolder = $rowHolder.add($holderPos);
+        }
+        return $rowHolder;
+    }
 
     function dropToken($columnsHolders) {
         // loop in selected column from bottom
@@ -44,10 +85,6 @@
 
     // switch players
     function switchPlayers() {
-        if (currentPlayer === 1) {
-            currentPlayer = 2;
-        } else {
-            currentPlayer = 1;
-        }
+        currentPlayer === 1 ? (currentPlayer = 2) : (currentPlayer = 1);
     }
 })();
