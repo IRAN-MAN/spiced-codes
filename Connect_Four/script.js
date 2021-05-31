@@ -2,6 +2,8 @@
     // cache the selectors
     var $board = $(".board");
     var $columns = $board.find(".columns");
+    var $resetButton = $("#reset");
+    var $gameOver = $(".winner-modal-container");
     var currentPlayer = 1;
 
     $columns.on("click", function columnsClickHandler() {
@@ -10,9 +12,6 @@
 
         // cache the token holders to pass to the dropToken function
         var $columnsHolders = $selectedColumn.find(".holder");
-
-        // check if the player has 4 tokens in vertical holders
-        checkForWinner($columnsHolders);
 
         // get the index of targeted column
         var $columnIndex = $selectedColumn.index();
@@ -25,10 +24,60 @@
             return;
         }
 
+        // check if the player has 4 tokens in vertical holders
+        checkForWinner($columnsHolders);
+
         // get the horizantal holders using its index
         var $rowHolders = getRowHolders(rowIndex);
 
+        // check if the player has 4 tokens in horizantal holders
         checkForWinner($rowHolders);
+
+        var $topDiagonalHolders = getTopDiagonalHolders(rowIndex, $columnIndex);
+
+        checkForWinner($topDiagonalHolders);
+
+        var $bottomDiagonalHolders = getBottomDiagonalHolders(
+            rowIndex,
+            $columnIndex
+        );
+
+        checkForWinner($bottomDiagonalHolders);
+
+        function getTopDiagonalHolders(rowIdx, colIdx) {
+            var $diagonals = $();
+            var $allHolders = $columns.find(".holder");
+            while (rowIdx > 0 && colIdx > 0) {
+                rowIdx--;
+                colIdx--;
+            }
+            while (rowIdx <= 5 && colIdx <= 6) {
+                $diagonals = $diagonals.add(
+                    $allHolders.eq(rowIdx + colIdx * 6)
+                );
+                rowIdx++;
+                colIdx++;
+            }
+
+            return $diagonals;
+        }
+
+        function getBottomDiagonalHolders(rowIdx, colIdx) {
+            var $diagonals = $();
+            var $allHolders = $columns.find(".holder");
+            while (rowIdx < 5 && colIdx > 0) {
+                rowIdx++;
+                colIdx--;
+            }
+            while (rowIdx >= 0 && colIdx <= 6) {
+                $diagonals = $diagonals.add(
+                    $allHolders.eq(rowIdx + colIdx * 6)
+                );
+                rowIdx--;
+                colIdx++;
+            }
+            return $diagonals;
+        }
 
         switchPlayers();
     });
@@ -40,18 +89,32 @@
             // if there's a holder with the current player class, add 1 to the variable
             if ($currentHolder.hasClass("player-" + currentPlayer)) {
                 count++;
-                console.log("player-" + currentPlayer, count);
+
                 if (count === 4) {
-                    console.log("Player " + currentPlayer + " has won!");
-                    // setTimeout(function () {
-                    //     window.location.reload();
-                    // }, 1000);
+                    showWinnerHandler($holders);
                 }
             } else {
                 count = 0;
             }
         }
     }
+
+    function showWinnerHandler($holders) {
+        var $winnerHolders = $holders.find(".circle");
+        $winnerHolders.addClass("winner");
+        // var winnerMessage = `<h4>Player ${currentPlayer} has won!</h4>`;
+        $(`<h4>Player ${currentPlayer} has won!</h4>`).insertAfter(
+            $gameOver.find(".winner-modal h3")
+        );
+        setTimeout(function () {
+            $gameOver.css({ display: "flex" });
+        }, 2000);
+    }
+
+    $resetButton.on("click", function () {
+        $gameOver.css({ display: "none" });
+        window.location.reload();
+    });
 
     function getRowHolders(rowIndex) {
         //empty jquery object
@@ -76,6 +139,12 @@
             // if is not taken, add the corresponding class and return the position
             if (!isTaken) {
                 $currentHolder.addClass("player-" + currentPlayer);
+                $currentHolder.find(".token").animate(
+                    {
+                        top: "+=400px",
+                    },
+                    "swing"
+                );
                 return i;
             }
         }

@@ -11,10 +11,10 @@
     * keep track of current player
     * switch between players 1 and 2 (switchPlayers function)
         * switchPlayers 
-        * if the currentPlayer is 1 then switch it to 2 otherwise switch to 1
+            * if the currentPlayer is 1 then switch it to 2 otherwise switch to 1
 	* eventListener on click on columns
         * get the targeted column index
-	* update the board with new token droped in selectedColumn and return the row index (dropToken function)
+		* update the board with new token droped in selectedColumn and return the row index (dropToken function)
             * dropToken 
                 * pass the correct arguments (columnHolders)
                 * find the first available columnHolder (check if its taken or not)
@@ -23,7 +23,23 @@
                 * if there's no empty holders on the column, return -1 (to use as preventing user to drop token on a full column)
             
     
-        * check if winning condition is met for both rows and columns
+        * check if winning condition is met for both rows and columns (checkForWinner function)
+            *columns - pass the $columnsHolder to checkForWinner function
+                * create a variable to keep track of column holders with the same class
+                * loop over the $columnholders 
+                    * if there's a holder with the current player class, add 1 to the variable
+                    * else reset the count
+                    * if the count is 4 show victory message and reset the board
+
+            * rows
+                * store the horizantal position of the holders in in a jquey collection ($rowsHolder)
+                    * create an empty jquery collection
+                    * loop over the columns, add the holders at rowIndex to the $rowsHolder
+                    * return the $rowHolder
+
+            * diagonal
+                * get the index of the current holder
+                * 
 	
 
 	
