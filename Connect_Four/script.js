@@ -6,81 +6,105 @@
     var $gameOver = $(".winner-modal-container");
     var currentPlayer = 1;
 
-    $columns.on("click", function columnsClickHandler() {
-        // cache the selected column
-        var $selectedColumn = $(this);
+    $columns
+        .on("mouseenter", function () {
+            var $emptyHolders = $(this).find(".holder");
+            // console.log($emptyHolders);
+            // console.log($emptyHolders.length);
 
-        // cache the token holders to pass to the dropToken function
-        var $columnsHolders = $selectedColumn.find(".holder");
+            for (var i = $emptyHolders.length - 1; i >= 0; i--) {
+                var $currentHolder = $emptyHolders.eq(i);
+                // console.log($currentHolder);
+                var isTaken =
+                    $currentHolder.hasClass("player-1") ||
+                    $currentHolder.hasClass("player-2");
+                if (!isTaken) {
+                    $currentHolder
+                        .find(".circle")
+                        .addClass(`player-${currentPlayer}-hover-effect`);
+                    break;
+                }
+            }
+        })
+        .on("mouseleave", ".holder", function () {
+            $(".holder")
+                .find(".circle")
+                .removeClass(`player-${currentPlayer}-hover-effect`);
+        })
+        .on("click", function columnsClickHandler() {
+            // cache the selected column
+            var $selectedColumn = $(this);
 
-        // get the index of targeted column
-        var $columnIndex = $selectedColumn.index();
+            // cache the token holders to pass to the dropToken function
+            var $columnsHolders = $selectedColumn.find(".holder");
 
-        // update the board with new token and get the index of targeted row
-        var rowIndex = dropToken($columnsHolders);
+            // get the index of targeted column
+            var $columnIndex = $selectedColumn.index();
 
-        // prevent the player to drop the token on already full column
-        if (rowIndex < 0) {
-            return;
+            // update the board with new token and get the index of targeted row
+            var rowIndex = dropToken($columnsHolders);
+
+            // prevent the player to drop the token on already full column
+            if (rowIndex < 0) {
+                return;
+            }
+
+            // check if the player has 4 tokens in vertical holders
+            checkForWinner($columnsHolders);
+
+            // get the horizantal holders using its index
+            var $rowHolders = getRowHolders(rowIndex);
+
+            // check if the player has 4 tokens in horizantal holders
+            checkForWinner($rowHolders);
+
+            var $topDiagonalHolders = getTopDiagonalHolders(
+                rowIndex,
+                $columnIndex
+            );
+
+            checkForWinner($topDiagonalHolders);
+
+            var $bottomDiagonalHolders = getBottomDiagonalHolders(
+                rowIndex,
+                $columnIndex
+            );
+
+            checkForWinner($bottomDiagonalHolders);
+
+            switchPlayers();
+        });
+
+    function getTopDiagonalHolders(rowIdx, colIdx) {
+        var $diagonals = $();
+        var $allHolders = $columns.find(".holder");
+        while (rowIdx > 0 && colIdx > 0) {
+            rowIdx--;
+            colIdx--;
+        }
+        while (rowIdx <= 5 && colIdx <= 6) {
+            $diagonals = $diagonals.add($allHolders.eq(rowIdx + colIdx * 6));
+            rowIdx++;
+            colIdx++;
         }
 
-        // check if the player has 4 tokens in vertical holders
-        checkForWinner($columnsHolders);
+        return $diagonals;
+    }
 
-        // get the horizantal holders using its index
-        var $rowHolders = getRowHolders(rowIndex);
-
-        // check if the player has 4 tokens in horizantal holders
-        checkForWinner($rowHolders);
-
-        var $topDiagonalHolders = getTopDiagonalHolders(rowIndex, $columnIndex);
-
-        checkForWinner($topDiagonalHolders);
-
-        var $bottomDiagonalHolders = getBottomDiagonalHolders(
-            rowIndex,
-            $columnIndex
-        );
-
-        checkForWinner($bottomDiagonalHolders);
-
-        function getTopDiagonalHolders(rowIdx, colIdx) {
-            var $diagonals = $();
-            var $allHolders = $columns.find(".holder");
-            while (rowIdx > 0 && colIdx > 0) {
-                rowIdx--;
-                colIdx--;
-            }
-            while (rowIdx <= 5 && colIdx <= 6) {
-                $diagonals = $diagonals.add(
-                    $allHolders.eq(rowIdx + colIdx * 6)
-                );
-                rowIdx++;
-                colIdx++;
-            }
-
-            return $diagonals;
+    function getBottomDiagonalHolders(rowIdx, colIdx) {
+        var $diagonals = $();
+        var $allHolders = $columns.find(".holder");
+        while (rowIdx < 5 && colIdx > 0) {
+            rowIdx++;
+            colIdx--;
         }
-
-        function getBottomDiagonalHolders(rowIdx, colIdx) {
-            var $diagonals = $();
-            var $allHolders = $columns.find(".holder");
-            while (rowIdx < 5 && colIdx > 0) {
-                rowIdx++;
-                colIdx--;
-            }
-            while (rowIdx >= 0 && colIdx <= 6) {
-                $diagonals = $diagonals.add(
-                    $allHolders.eq(rowIdx + colIdx * 6)
-                );
-                rowIdx--;
-                colIdx++;
-            }
-            return $diagonals;
+        while (rowIdx >= 0 && colIdx <= 6) {
+            $diagonals = $diagonals.add($allHolders.eq(rowIdx + colIdx * 6));
+            rowIdx--;
+            colIdx++;
         }
-
-        switchPlayers();
-    });
+        return $diagonals;
+    }
 
     function checkForWinner($holders) {
         var count = 0;
@@ -100,15 +124,15 @@
     }
 
     function showWinnerHandler($holders) {
-        var $winnerHolders = $holders.find(".circle");
-        $winnerHolders.addClass("winner");
-        // var winnerMessage = `<h4>Player ${currentPlayer} has won!</h4>`;
+        var $winnerHolders = $holders.filter(".player-" + currentPlayer);
+        console.log($winnerHolders);
+        $winnerHolders.children().addClass("winner");
         $(`<h4>Player ${currentPlayer} has won!</h4>`).insertAfter(
             $gameOver.find(".winner-modal h3")
         );
         setTimeout(function () {
             $gameOver.css({ display: "flex" });
-        }, 2000);
+        }, 2500);
     }
 
     $resetButton.on("click", function () {
@@ -143,7 +167,7 @@
                     {
                         top: "+=400px",
                     },
-                    "swing"
+                    "slow"
                 );
                 return i;
             }

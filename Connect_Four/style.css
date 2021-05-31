@@ -13,7 +13,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 420px;
-    background-color: teal;
+    background-color: rgb(0, 128, 32);
     border-radius: 2rem;
     position: fixed;
     top: 4rem;
@@ -23,9 +23,20 @@ body {
 }
 
 .columns:hover {
-    background-color: rosybrown;
+    background-color: rgb(61, 61, 61);
 }
 
+.circle.player-1-hover-effect {
+    box-shadow: inset 0 0 20px rgb(134, 24, 24),
+        inset 0px 0 25px rgb(255, 238, 0), inset -10px 0 20px rgb(255, 17, 0),
+        inset 5px 0 20px #f0f, inset -10px 0 20px rgb(250, 226, 7);
+}
+
+.circle.player-2-hover-effect {
+    box-shadow: inset 0 0 20px rgb(11, 51, 110),
+        inset 0px 0 25px rgb(2, 105, 201), inset -10px 0 20px rgb(5, 108, 156),
+        inset 5px 0 20px rgb(0, 153, 255), inset -10px 0 20px rgb(5, 139, 180);
+}
 .circle {
     width: 50px;
     height: 50px;
@@ -87,7 +98,7 @@ body {
     width: 40%;
     position: relative;
     text-align: center;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .winner-modal h3 {
@@ -102,4 +113,34 @@ body {
 
 #reset {
     margin-top: 1rem;
+}
+
+.info-container {
+    position: absolute;
+    top: 25%;
+    left: 3%;
+}
+
+.info {
+    width: 200px;
+}
+
+.info .color1 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgb(134, 24, 24),
+        inset 0px 0 25px rgb(255, 238, 0), inset -10px 0 20px rgb(255, 17, 0),
+        inset 5px 0 20px #f0f, inset -10px 0 20px rgb(250, 226, 7);
+    margin: 0.5rem 0;
+}
+
+.info .color2 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgb(11, 51, 110),
+        inset 0px 0 25px rgb(2, 105, 201), inset -10px 0 20px rgb(5, 108, 156),
+        inset 5px 0 20px rgb(0, 153, 255), inset -10px 0 20px rgb(5, 139, 180);
+    margin: 0.5rem 0;
 }
