@@ -12,7 +12,10 @@
 
     $.get("/headLines.json", function (data) {
         appendNews(data);
+        initTicker();
+    });
 
+    function initTicker() {
         var $topHeadlines = $("#headlines-top");
         var $topLinks = $topHeadlines.find(".top-links");
         var $left = $topHeadlines.offset().left;
@@ -48,5 +51,5 @@
                 moveHeadlines();
             }
         }
-    });
+    }
 })();
