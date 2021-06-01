@@ -10,44 +10,24 @@ she does so.
 */
 
 (function () {
+    var numbersInGerman = {
+        1: "Eins",
+        2: "Zwei",
+        3: "Drei",
+        4: "Vier",
+        5: "Fünf",
+        6: "Sechs",
+        7: "Sieben",
+        8: "Acht",
+        9: "Neun",
+        10: "Zehn",
+    };
+
     function translateNumberToGerman() {
         try {
             var number = askForNumber();
-
-            switch (number) {
-                case "1":
-                    alert("Ein");
-                    break;
-                case "2":
-                    alert("Zwei");
-                    break;
-                case "3":
-                    alert("Drei");
-                    break;
-                case "4":
-                    alert("Vier");
-                    break;
-                case "5":
-                    alert("Fünf");
-                    break;
-                case "6":
-                    alert("Sechs");
-                    break;
-                case "7":
-                    alert("Sieben");
-                    break;
-                case "8":
-                    alert("Acht");
-                    break;
-                case "9":
-                    alert("Nein");
-                    break;
-                case "10":
-                    alert("Zehn");
-                    break;
-                default:
-                    break;
-            }
+            alert("German Translation: " + numbersInGerman[number]);
+            translateNumberToGerman();
         } catch (error) {
             alert(error);
             translateNumberToGerman();
