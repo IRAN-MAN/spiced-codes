@@ -6,14 +6,7 @@
     var timerID;
 
     $field
-        .on("input", function () {
-            if (timerID) {
-                clearTimeout(timerID);
-            }
-            timerID = setTimeout(function () {
-                ajaxInputHandler();
-            }, THROTTLE_INTERVAL);
-        })
+        .on("input", throttleHandler)
         .on("keydown", keydownHandler)
         .on("focus", focusHandler)
         .on("blur", blurHandler);
@@ -23,6 +16,15 @@
         .on("mousedown", ".individual-result", mousedownHandler);
 
     // Handlers
+
+    function throttleHandler() {
+        if (timerID) {
+            clearTimeout(timerID);
+        }
+        timerID = setTimeout(function () {
+            ajaxInputHandler();
+        }, THROTTLE_INTERVAL);
+    }
 
     function ajaxInputHandler() {
         var $valueAtRequest = $field.val();
