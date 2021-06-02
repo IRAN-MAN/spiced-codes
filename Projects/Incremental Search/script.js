@@ -1,92 +1,143 @@
 (function () {
     var $field = $("#search");
     var $results = $("#results");
+    var API_URL = "https://spicedworld.herokuapp.com/";
 
     $field
-        .on("input", function () {
-            var $val = $field.val();
-            // console.log($val);
-            if ($val.length == 0) {
-                return;
-            }
-            var matches = [];
-            // console.log(matches);
-            for (var i = 0; i < countries.length; i++) {
-                if (
-                    countries[i].toLowerCase().indexOf($val.toLowerCase()) == 0
-                ) {
-                    matches.push(countries[i]);
-                    if (matches.length == 4) {
-                        break;
-                    }
-                }
-            }
-            if (matches.length == 0) {
-                var noResultsMessage = "<div>No Results!</div>";
-                $results.html(noResultsMessage);
-            } else {
-                var upToFourResults = "";
-                for (var j = 0; j < matches.length; j++) {
-                    upToFourResults += "<div class=individual-result>";
-                    upToFourResults += matches[j];
-                    upToFourResults += "</div>";
-                }
-                // console.log(upToFourResults);
-                $results.html(upToFourResults);
-            }
-        })
-        .on("keydown", function (event) {
-            switch (event.keyCode) {
-                case 40: //Down Arrow
-                    var $highlightedIndex = $(".highlighted").index();
-                    // console.log($index);
-                    if ($(".highlighted").length == 0) {
-                        $results.children().first().addClass("highlighted");
-                    } else if (
-                        $highlightedIndex !==
-                        $(".individual-result").length - 1
-                    ) {
-                        $(".highlighted").next().addClass("highlighted");
-                        $(".highlighted").first().removeClass("highlighted");
-                    }
-                    break;
-                case 38: //Up Arrow
-                    if ($(".highlighted").length == 0) {
-                        $results.children().last().addClass("highlighted");
-                    } else if (
-                        $(".individual-result").first().hasClass("highlighted")
-                    ) {
-                        break;
-                    } else {
-                        $(".highlighted").prev().addClass("highlighted");
-                        $(".highlighted").last().removeClass("highlighted");
-                    }
-                    break;
-                case 13:
-                    var $resultValue = $(".highlighted").html();
-                    $field.val($resultValue);
-                    $results.html("");
-                    break;
-            }
-        })
-        .on("focus", function () {
-            $field.trigger("input");
-        })
-        .on("blur", function () {
-            $results.html("");
-        });
+        .on("input", ajaxInputHandler)
+        .on("keydown", keydownHandler)
+        .on("focus", focusHandler)
+        .on("blur", blurHandler);
 
     $("#results")
-        .on("mouseover", ".individual-result", function (event) {
-            $(".highlighted").removeClass("highlighted");
-            $(event.currentTarget).addClass("highlighted");
-            // console.log(event.currentTarget);
-        })
-        .on("mousedown", ".individual-result", function (event) {
-            var $resultValue = $(event.currentTarget).html();
-            $field.val($resultValue);
-            $results.html("");
+        .on("mouseover", ".individual-result", mouseoverHandler)
+        .on("mousedown", ".individual-result", mousedownHandler);
+
+    // Handlers
+
+    function ajaxInputHandler() {
+        var $valueAtRequest = $field.val();
+
+        $.ajax({
+            url: API_URL,
+            data: {
+                q: $valueAtRequest,
+            },
+            success: function (data) {
+                if (!data.length) {
+                    renderNoResults();
+                    return;
+                }
+                var $valueAtResponse = $field.val();
+                if ($valueAtRequest !== $valueAtResponse) {
+                    return;
+                }
+                $results.empty();
+                renderAndAppendResults(data);
+            },
         });
+    }
+
+    function renderAndAppendResults(data) {
+        $("#no-results").remove();
+
+        data.forEach(function (country) {
+            var elementToAppend =
+                "<div class=individual-result>" + country + "</div>";
+            $results.append(elementToAppend);
+            if ($results.length == 4) {
+                return;
+            }
+        });
+    }
+
+    function renderNoResults() {
+        var noResultsMessage = "<div id=no-results>No Results!</div>";
+        $results.html(noResultsMessage);
+    }
+
+    function inputHandler() {
+        var $val = $field.val();
+
+        if ($val.length == 0) {
+            return;
+        }
+        var matches = [];
+
+        for (var i = 0; i < countries.length; i++) {
+            if (countries[i].toLowerCase().indexOf($val.toLowerCase()) == 0) {
+                matches.push(countries[i]);
+                if (matches.length == 4) {
+                    break;
+                }
+            }
+        }
+        if (matches.length == 0) {
+            var noResultsMessage = "<div>No Results!</div>";
+            $results.html(noResultsMessage);
+        } else {
+            var upToFourResults = "";
+            for (var j = 0; j < matches.length; j++) {
+                upToFourResults += "<div class=individual-result>";
+                upToFourResults += matches[j];
+                upToFourResults += "</div>";
+            }
+            $results.html(upToFourResults);
+        }
+    }
+
+    function keydownHandler(event) {
+        switch (event.keyCode) {
+            case 40: //Down Arrow
+                var $highlightedIndex = $(".highlighted").index();
+                if ($(".highlighted").length == 0) {
+                    $results.children().first().addClass("highlighted");
+                } else if (
+                    $highlightedIndex !==
+                    $(".individual-result").length - 1
+                ) {
+                    $(".highlighted").next().addClass("highlighted");
+                    $(".highlighted").first().removeClass("highlighted");
+                }
+                break;
+            case 38: //Up Arrow
+                if ($(".highlighted").length == 0) {
+                    $results.children().last().addClass("highlighted");
+                } else if (
+                    $(".individual-result").first().hasClass("highlighted")
+                ) {
+                    break;
+                } else {
+                    $(".highlighted").prev().addClass("highlighted");
+                    $(".highlighted").last().removeClass("highlighted");
+                }
+                break;
+            case 13:
+                var $resultValue = $(".highlighted").html();
+                $field.val($resultValue);
+                $results.html("");
+                break;
+        }
+    }
+
+    function mouseoverHandler(event) {
+        $(".highlighted").removeClass("highlighted");
+        $(event.currentTarget).addClass("highlighted");
+    }
+
+    function mousedownHandler(event) {
+        var $resultValue = $(event.currentTarget).html();
+        $field.val($resultValue);
+        $results.html("");
+    }
+
+    function focusHandler() {
+        $field.trigger("input");
+    }
+
+    function blurHandler() {
+        $results.html("");
+    }
 
     var countries = [
         "Afghanistan",
