@@ -24,6 +24,12 @@ form {
 
 button.load-more-button {
     display: none;
+    text-align: center;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 1.5rem;
+    background-color: coral;
+    font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .result-list {
@@ -43,7 +49,7 @@ a {
     text-decoration: none;
     color: black;
     position: absolute;
-    top: 1rem;
+    top: 3rem;
     left: 15rem;
     font-family: monospace;
 }
