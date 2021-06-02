@@ -2,9 +2,18 @@
     var $field = $("#search");
     var $results = $("#results");
     var API_URL = "https://spicedworld.herokuapp.com/";
+    var THROTTLE_INTERVAL = 200;
+    var timerID;
 
     $field
-        .on("input", ajaxInputHandler)
+        .on("input", function () {
+            if (timerID) {
+                clearTimeout(timerID);
+            }
+            timerID = setTimeout(function () {
+                ajaxInputHandler();
+            }, THROTTLE_INTERVAL);
+        })
         .on("keydown", keydownHandler)
         .on("focus", focusHandler)
         .on("blur", blurHandler);
@@ -32,15 +41,14 @@
                 if ($valueAtRequest !== $valueAtResponse) {
                     return;
                 }
-                $results.empty();
-                renderAndAppendResults(data);
+                appendAjaxResponse(data);
             },
         });
     }
 
-    function renderAndAppendResults(data) {
+    function appendAjaxResponse(data) {
         $("#no-results").remove();
-
+        $results.empty();
         data.forEach(function (country) {
             var elementToAppend =
                 "<div class=individual-result>" + country + "</div>";
