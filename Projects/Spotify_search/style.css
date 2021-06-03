@@ -25,11 +25,18 @@ form {
 button.load-more-button {
     display: none;
     text-align: center;
-    width: 5rem;
+    width: 10rem;
     height: 2rem;
     border-radius: 1.5rem;
     background-color: coral;
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: Georgia;
+    margin-bottom: 1rem;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .result-list {
