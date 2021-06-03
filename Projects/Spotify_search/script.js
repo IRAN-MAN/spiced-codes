@@ -1,6 +1,8 @@
 $(function () {
     var API_URL = "https://spicedify.herokuapp.com/spotify";
 
+    var useInfiniteScroll = location.search.indexOf("scroll=infinite") > -1;
+
     var $form = $("form");
     var $resultList = $(".result-list");
     var $resultTitle = $(".result-title");
@@ -9,6 +11,7 @@ $(function () {
     var nextURL = null;
     var searchValue = null;
     var optionValue = null;
+    var hasScrolledCloseToBottom = false;
 
     $form.on("submit", submitFormHandler);
     $moreButton.on("click", moreButtomClickHandler);
@@ -28,9 +31,44 @@ $(function () {
                 var proccessedData = extractInfoFromData(data);
                 showResultsTitle(proccessedData, searchValue);
                 renderResults(proccessedData.items);
-                showMoreButton(proccessedData);
+                nextURL = proccessedData.next;
+                if (!useInfiniteScroll) {
+                    showMoreButton(proccessedData);
+                }
+                if (nextURL && useInfiniteScroll) {
+                    checkScrollPoition();
+                }
             },
         });
+    }
+
+    function checkScrollPoition() {
+        hasScrolledCloseToBottom = checkHasScrollCloseToBottom();
+        if (hasScrolledCloseToBottom) {
+            var replacedURL = replaceURLName(nextURL);
+            $.ajax({
+                url: replacedURL,
+                success: function (moreData) {
+                    var proccessedData = extractInfoFromData(moreData);
+                    renderResults(proccessedData.items);
+                    nextURL = proccessedData.next;
+                    if (nextURL) {
+                        checkScrollPoition();
+                    }
+                },
+            });
+        } else {
+            setTimeout(checkScrollPoition, 500);
+        }
+    }
+
+    function checkHasScrollCloseToBottom() {
+        var $sum = Math.round($(window).height() + $(document).scrollTop());
+        if ($sum == $(document).height()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function moreButtomClickHandler() {
@@ -51,7 +89,6 @@ $(function () {
 
     function showMoreButton(data) {
         if (data.next) {
-            nextURL = data.next;
             $moreButton.show();
         }
     }
@@ -68,7 +105,6 @@ $(function () {
     }
 
     function showResultsTitle(results, searchValue) {
-        console.log(results);
         if (results.total == 0) {
             $moreButton.hide();
             $resultTitle
