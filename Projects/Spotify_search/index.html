@@ -27,6 +27,19 @@
                 </form>
             </header>
 
+            <script id="results" type="text/x-handlebars-template">
+                {{#each showResults}}
+                    <li class="individual-result">
+                        <a href={{external_urls.spotify}}>{{name}}</a>
+                        <img src={{images.0.url}} />
+                    </li>
+                {{/each}}
+
+                <p>
+                    <button class="load-more-button">Show More Results</button>
+                </p>
+            </script>
+
             <section class="results">
                 <h2 class="result-title"></h2>
                 <ul class="result-list"></ul>
@@ -35,7 +48,7 @@
                 </p>
             </section>
         </main>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
         <script src="script.js"></script>
     </body>

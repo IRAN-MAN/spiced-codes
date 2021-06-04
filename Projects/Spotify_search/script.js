@@ -1,3 +1,17 @@
+Handlebars.templates = Handlebars.templates || {};
+
+function prepareTemplate() {
+    var templates = document.querySelectorAll(
+        'script[type="text/x-handlebars-template"]'
+    );
+
+    templates.forEach(function (template) {
+        Handlebars.templates[template.id] = Handlebars.compile(
+            template.innerText
+        );
+    });
+}
+
 $(function () {
     var API_URL = "https://spicedify.herokuapp.com/spotify";
 
@@ -30,7 +44,8 @@ $(function () {
                 $resultList.empty();
                 var proccessedData = extractInfoFromData(data);
                 showResultsTitle(proccessedData, searchValue);
-                renderResults(proccessedData.items);
+                renderHandlebartemplate(proccessedData.items);
+                // renderResults(proccessedData.items);
                 nextURL = proccessedData.next;
                 if (!useInfiniteScroll) {
                     showMoreButton(proccessedData);
@@ -50,7 +65,7 @@ $(function () {
                 url: replacedURL,
                 success: function (moreData) {
                     var proccessedData = extractInfoFromData(moreData);
-                    renderResults(proccessedData.items);
+                    renderHandlebartemplate(proccessedData.items);
                     nextURL = proccessedData.next;
                     if (nextURL) {
                         checkScrollPoition();
@@ -77,7 +92,7 @@ $(function () {
             url: replacedURL,
             success: function (moreData) {
                 var proccessedData = extractInfoFromData(moreData);
-                renderResults(proccessedData.items);
+                renderHandlebartemplate(proccessedData.items);
                 hideMoreButton(proccessedData.next);
             },
         });
@@ -118,6 +133,13 @@ $(function () {
                 .html("Showing results for: " + searchValue.toUpperCase())
                 .css({ color: "black" });
         }
+    }
+
+    function renderHandlebartemplate(results) {
+        prepareTemplate();
+        $resultList.append(
+            Handlebars.templates.results({ showResults: results })
+        );
     }
 
     function renderResults(results) {
