@@ -1,0 +1,26 @@
+{
+    "README.md": "12 bytes",
+    "part1": {
+        "a": {
+            "images": {
+                "cats.png": "573350 bytes",
+                "kitty1_150x150.jpg": "9279 bytes",
+                "kitty2_150x150.jpg": "14355 bytes",
+                "kitty3_150x150.jpg": "13387 bytes"
+            },
+            "index.html": "241 bytes",
+            "stylesheet.css": "40 bytes"
+        },
+        "b": {
+            "images": {
+                "boxes.png": "156804 bytes"
+            },
+            "index.html": "243 bytes",
+            "stylesheet.css": "39 bytes"
+        }
+    },
+    "part2": {
+        "index.html": "160 bytes",
+        "script.js": "1998 bytes"
+    }
+}
