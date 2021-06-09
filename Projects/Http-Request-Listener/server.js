@@ -1,4 +1,5 @@
 const http = require("http");
+
 const {
     requestsLog,
     postHandler,
@@ -25,12 +26,13 @@ http.createServer((request, response) => {
             }
 
             if (method === "GET") {
-                getHandler(response);
+                getHandler(response, url);
             }
 
             if (method === "POST") {
                 postHandler(body, response);
             }
+
             response.statusCode = 405;
             response.end();
             requestsLog(method, url, userAgent);
