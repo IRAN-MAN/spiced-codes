@@ -1,14 +1,14 @@
 const http = require("http");
+const {
+    requestsLog,
+    postHandler,
+    headHandler,
+    getHandler,
+} = require("./utilities");
 
-const responseForGET = `<!doctype html>
-                       <html>
-                         <title>Hello World!</title>
-                         <p>Hello World!</p>
-                       </html>`;
-
-const server = http.createServer((request, response) => {
+http.createServer((request, response) => {
     const { method, url, headers } = request;
-
+    const userAgent = headers["user-agent"];
     let body = [];
 
     console.log(`incoming '${method}' request on '${url}' with headers:\n`);
@@ -20,28 +20,19 @@ const server = http.createServer((request, response) => {
         .on("end", () => {
             body = Buffer.concat(body).toString();
 
-            if (method === "GET" && "HEAD") {
-                response.writeHead(200, {
-                    "Content-Type": "text/html",
-                });
-            }
-
             if (method === "HEAD") {
-                response.end();
+                headHandler(response);
             }
 
             if (method === "GET") {
-                response.end(responseForGET);
+                getHandler(response);
             }
 
             if (method === "POST") {
-                console.log("Request Body on POST:", body);
-                response.writeHead(302, {
-                    location: "/",
-                });
+                postHandler(body, response);
             }
             response.statusCode = 405;
             response.end();
+            requestsLog(method, url, userAgent);
         });
-});
-server.listen(8080);
+}).listen(8080);
