@@ -38,6 +38,7 @@ http.createServer((request, response) => {
                 postHandler(body, response);
             }
         });
+    response.on("error", (error) => console.log("[Error]", error));
 }).listen(8081);
 
 const getHandler = (response) => {

@@ -37,4 +37,5 @@ http.createServer((request, response) => {
             response.end();
             requestsLog(method, url, userAgent);
         });
+    response.on("error", (error) => console.log("[Error]", error));
 }).listen(8080);
