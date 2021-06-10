@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 16px;
+    background-color: yellowgreen;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 420px;
+    background-color: rgb(0, 128, 32);
+    border-radius: 2rem;
+    position: fixed;
+    top: 4rem;
+    left: 27%;
+    border: 1px solid;
+    overflow: hidden;
+}
+
+.columns:hover {
+    background-color: rgb(61, 61, 61);
+}
+
+.circle.player-1-hover-effect {
+    box-shadow: inset 0 0 20px rgb(134, 24, 24),
+        inset 0px 0 25px rgb(255, 238, 0), inset -10px 0 20px rgb(255, 17, 0),
+        inset 5px 0 20px #f0f, inset -10px 0 20px rgb(250, 226, 7);
+}
+
+.circle.player-2-hover-effect {
+    box-shadow: inset 0 0 20px rgb(11, 51, 110),
+        inset 0px 0 25px rgb(2, 105, 201), inset -10px 0 20px rgb(5, 108, 156),
+        inset 5px 0 20px rgb(0, 153, 255), inset -10px 0 20px rgb(5, 139, 180);
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellowgreen;
+    margin: 0.3rem;
+    position: relative;
+}
+
+.token {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: -400px;
+}
+
+.holder.player-1 .circle.winner {
+    box-shadow: 0 0 20px rgb(247, 165, 41), -10px 0 40px rgb(255, 0, 0),
+        10px 0 30px rgb(255, 125, 4);
+}
+
+.holder.player-2 .circle.winner {
+    box-shadow: 0 0 20px rgb(41, 165, 247), -10px 0 40px rgb(0, 204, 255),
+        10px 0 30px rgb(4, 134, 255);
+}
+
+.holder.player-1 .token {
+    box-shadow: inset 0 0 20px rgb(134, 24, 24),
+        inset 0px 0 25px rgb(255, 238, 0), inset -10px 0 20px rgb(255, 17, 0),
+        inset 5px 0 20px #f0f, inset -10px 0 20px rgb(250, 226, 7);
+}
+
+.holder.player-2 .token {
+    box-shadow: inset 0 0 20px rgb(11, 51, 110),
+        inset 0px 0 25px rgb(2, 105, 201), inset -10px 0 20px rgb(5, 108, 156),
+        inset 5px 0 20px rgb(0, 153, 255), inset -10px 0 20px rgb(5, 139, 180);
+}
+
+.winner-modal-container {
+    height: 100vh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.winner-modal {
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 40%;
+    position: relative;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.winner-modal h3 {
+    font-family: monospace;
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.winner-modal h4 {
+    font-family: monospace;
+}
+
+#reset {
+    margin-top: 1rem;
+}
+
+.info-container {
+    position: absolute;
+    top: 25%;
+    left: 3%;
+}
+
+.info {
+    width: 200px;
+}
+
+.info .color1 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgb(134, 24, 24),
+        inset 0px 0 25px rgb(255, 238, 0), inset -10px 0 20px rgb(255, 17, 0),
+        inset 5px 0 20px #f0f, inset -10px 0 20px rgb(250, 226, 7);
+    margin: 0.5rem 0;
+}
+
+.info .color2 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgb(11, 51, 110),
+        inset 0px 0 25px rgb(2, 105, 201), inset -10px 0 20px rgb(5, 108, 156),
+        inset 5px 0 20px rgb(0, 153, 255), inset -10px 0 20px rgb(5, 139, 180);
+    margin: 0.5rem 0;
+}

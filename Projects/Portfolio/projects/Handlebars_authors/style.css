@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+img {
+    width: 200px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+
+    border-radius: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    background-color: darkcyan;
+    margin: 2rem auto;
+    border-radius: 1rem;
+}
+
+li {
+    margin-left: 2rem;
+    font-size: small;
+}
+
+li:last-of-type {
+    margin-bottom: 0.5rem;
+}
+
+q {
+    margin-bottom: 0.5rem;
+    width: 200px;
+    font-size: smaller;
+    margin-left: 1.5rem;
+}
+
+cite:last-of-type {
+}
+
+h4 {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+}
