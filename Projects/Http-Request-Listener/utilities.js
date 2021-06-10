@@ -47,7 +47,7 @@ const getHandler = (response, url) => {
         response.writeHead(200, {
             "Content-Type": "text/plain",
         });
-        fs.createReadStream("./requests.txt").pipe(response);
+        fs.createReadStream(`${__dirname}/requests.txt`).pipe(response);
         return;
     }
     response.end(responseForGET);

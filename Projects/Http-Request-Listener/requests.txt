@@ -26,3 +26,108 @@ Request URL: "/requests.txt"
 User Agent Request Header: "PostmanRuntime/7.28.0"
 total requests: 4
 
+
+Date-and-Time: Thu Jun 10 2021 10:01:24
+Request Method: "GET"
+Request URL: "/"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 1
+
+
+Date-and-Time: Thu Jun 10 2021 10:01:25
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 2
+
+
+Date-and-Time: Thu Jun 10 2021 10:01:35
+Request Method: "GET"
+Request URL: "/requests.txt"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 3
+
+
+Date-and-Time: Thu Jun 10 2021 10:01:38
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 4
+
+
+Date-and-Time: Thu Jun 10 2021 10:01:58
+Request Method: "GET"
+Request URL: "/requests.txt"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 5
+
+
+Date-and-Time: Thu Jun 10 2021 10:01:59
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 6
+
+
+Date-and-Time: Thu Jun 10 2021 10:02:56
+Request Method: "GET"
+Request URL: "/requests.txt"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 1
+
+
+Date-and-Time: Thu Jun 10 2021 10:02:57
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 2
+
+
+Date-and-Time: Thu Jun 10 2021 10:43:38
+Request Method: "GET"
+Request URL: "/requests.txt"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 1
+
+
+Date-and-Time: Thu Jun 10 2021 10:43:40
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 2
+
+
+Date-and-Time: Thu Jun 10 2021 11:11:50
+Request Method: "GET"
+Request URL: "/"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 1
+
+
+Date-and-Time: Thu Jun 10 2021 11:13:09
+Request Method: "GET"
+Request URL: "/"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 1
+
+
+Date-and-Time: Thu Jun 10 2021 11:13:11
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 2
+
+
+Date-and-Time: Thu Jun 10 2021 11:13:18
+Request Method: "GET"
+Request URL: "/requests.txt"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 3
+
+
+Date-and-Time: Thu Jun 10 2021 11:13:19
+Request Method: "GET"
+Request URL: "/favicon.ico"
+User Agent Request Header: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+total requests: 4
+
