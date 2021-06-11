@@ -10,7 +10,7 @@
         });
     }
 
-    $.get("/headLines.json", function (data) {
+    $.get("headLines.json", function (data) {
         appendNews(data);
         initTicker();
     });

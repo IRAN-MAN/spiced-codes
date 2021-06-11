@@ -1,7 +1,7 @@
 const http = require("http");
 const path = require("path");
 
-const { checkAndServeFiles } = require("./utilities.js");
+const { checkAndServeFiles, generateProjectsPage } = require("./utilities.js");
 
 const server = http.createServer((request, response) => {
     const { method, url } = request;
@@ -22,7 +22,7 @@ const server = http.createServer((request, response) => {
     }
 
     if (url === "/") {
-        return response.end("home page");
+        return response.end(generateProjectsPage());
     }
     checkAndServeFiles(projectsPath, response, url);
 });
