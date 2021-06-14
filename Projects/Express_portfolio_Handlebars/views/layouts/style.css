@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+img {
+    width: 400px;
+}
+
+section {
+    width: 100vw;
+    height: auto;
+    /* display: flex; */
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 2rem;
+}

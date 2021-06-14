@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 16px;
+}
+
+.highlighted {
+    background-color: gray;
+    color: blue;
+    cursor: pointer;
+}
+
+#results {
+    width: 10.4rem;
+}

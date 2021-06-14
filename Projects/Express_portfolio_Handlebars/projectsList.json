@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Kitty Carousel",
+        "directory": "Kitty_Carousel",
+        "img_path": "Kitty_Carousel/screenshot.jpg"
+    },
+    {
+        "title": "Connect Four",
+        "directory": "Connect_Four",
+        "img_path": "Connect_Four/screenshot.jpg"
+    },
+    {
+        "title": "Authors Handlebars",
+        "directory": "Handlebars_authors",
+        "img_path": "Handlebars_authors/screenshot.jpg"
+    },
+    {
+        "title": "First Web Page",
+        "directory": "Html_CSS_lab",
+        "img_path": "Html_CSS_lab/screenshot.jpg"
+    },
+    {
+        "title": "Incremental Search",
+        "directory": "Incremental_Search",
+        "img_path": "Incremental_Search/screenshot.jpg"
+    },
+    {
+        "title": "Pane",
+        "directory": "Pane",
+        "img_path": "Pane/screenshot.jpg"
+    },
+    {
+        "title": "Spotify Search",
+        "directory": "Spotify_Search",
+        "img_path": "Spotify_Search/screenshot.jpg"
+    },
+    {
+        "title": "News Ticker",
+        "directory": "Ticker",
+        "img_path": "Ticker/screenshot.jpg"
+    }
+]

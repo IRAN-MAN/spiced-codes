@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Times New Roman, Times, serif;
+}
+body {
+    font-size: 16px;
+}
+
+header {
+    height: 9vw;
+    position: relative;
+}
+
+#logo {
+    position: absolute;
+    height: 5vw;
+    left: 40px;
+    margin-top: 12.5px;
+}
+
+#hamburger {
+    position: absolute;
+    right: 3rem;
+    height: 40px;
+    margin-top: 2vw;
+}
+
+.open {
+    transform: translateX(0);
+}
+nav {
+    padding: 30px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: darkcyan;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    float: right;
+}
+ul li {
+    list-style-type: none;
+    margin-top: 2vw;
+}
+
+nav ul li:last-of-type {
+    font-size: 0.6rem;
+}
+
+ul li a {
+    margin-right: 10vw;
+    text-decoration: none;
+    color: darkblue;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+    height: 100vh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 40%;
+
+    position: relative;
+}
+
+.modal .modal-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+}
+
+.modal p {
+    margin: 1em auto;
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}
+
+#showcase {
+    background: url("../assets/spices.jpg") no-repeat;
+    background-size: cover;
+    text-align: center;
+    min-height: 400px;
+    padding-top: 150px;
+    opacity: 0.9;
+}
+
+h1 {
+    color: white;
+    font-size: 3rem;
+}
+
+button#start {
+    width: 180px;
+    height: 30px;
+    font-size: large;
+    border-radius: 15px;
+    border: 2px solid darkorange;
+    background-color: yellow;
+    color: darkorange;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 30px;
+}
+
+main {
+    background-color: gainsboro;
+    padding-top: 40px;
+    height: 300px;
+    position: relative;
+}
+
+#cat-container {
+    position: absolute;
+    left: 15%;
+    width: 30%;
+}
+
+#cat {
+    position: absolute;
+    top: 10%;
+    right: 105%;
+}
+
+#world-container {
+    position: absolute;
+    right: 10%;
+    width: 30%;
+}
+
+#world {
+    position: absolute;
+    right: 105%;
+}
+
+#swim-container {
+    position: absolute;
+    left: 15%;
+    top: 60%;
+    width: 30%;
+}
+
+#swim {
+    position: absolute;
+    top: 5%;
+    right: 105%;
+}
+
+#columns-container {
+    position: absolute;
+    right: 10%;
+    top: 60%;
+    width: 30%;
+}
+
+#columns {
+    position: absolute;
+    top: 5%;
+    right: 105%;
+}
+
+footer {
+    height: 30px;
+    background-color: rgb(109, 108, 108);
+    position: relative;
+}
+
+.footer {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 25%;
+    left: 5%;
+}
+
+@media screen and (max-width: 420px) {
+    #logo {
+        width: 100px;
+        height: auto;
+    }
+    #hamburger {
+        margin-top: 5px;
+        height: 30px;
+    }
+    header {
+        height: 40px;
+    }
+
+    h1 {
+        color: whitesmoke;
+        font-size: 2rem;
+    }
+
+    button {
+        text: "whatever";
+    }
+
+    #cat-container {
+        width: 80%;
+    }
+    #world-container {
+        width: 80%;
+        top: 30%;
+        right: 5%;
+    }
+    #swim-container {
+        width: 80%;
+        top: 50%;
+    }
+    #columns-container {
+        width: 80%;
+        top: 75%;
+        right: 5%;
+    }
+    main {
+        height: 400px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(43, 41, 41);
+    }
+    main {
+        background-color: rgb(43, 41, 41);
+        color: gainsboro;
+    }
+    button {
+        background-color: rgb(43, 41, 41);
+    }
+    #showcase {
+        opacity: 0.7;
+    }
+}
