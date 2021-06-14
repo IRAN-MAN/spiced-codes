@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+main {
+    padding: 2rem;
+}
+.pane {
+    width: 400px;
+    height: 225px;
+    /* border: 1px solid black; */
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.pane .image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: whitesmoke;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* .pane .image.color {
+    background-color: violet;
+}
+
+.pane .image.no-color {
+    background-color: turquoise;
+} */
+
+.pane .slider {
+    cursor: w-resize;
+    width: 5px;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30%;
+}
+
+.pane .image img {
+    object-fit: cover;
+    height: 100%;
+}
