@@ -9,9 +9,43 @@ body {
 }
 
 img {
-    width: 200px;
+    width: 90%;
+    border-radius: 10px;
+}
+
+main {
+    background-color: aquamarine;
+    padding: 1rem;
+    text-align: center;
 }
 
 section {
     display: flex;
+    /* width: 100vw; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+.card {
+    margin: 1rem;
+    /* border: 1px solid; */
+    width: 25%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+footer {
+    text-align: center;
+    background-color: cadetblue;
 }
