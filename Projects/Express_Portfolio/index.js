@@ -5,17 +5,11 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = 8080;
 
-const { cookieCheckMiddleware, cookieHandler } = require("./middlewares.js");
-
-const htmlRes = `<!doctype html> 
-     <html>
-        <head>
-            <title>Home Page</title>
-        </head>
-        <body>
-            <p>Home Page</p>
-        </body>
-    </html>`;
+const {
+    cookieCheckMiddleware,
+    basicAuthMiddleware,
+    cookieHandler,
+} = require("./middlewares.js");
 
 const cookieHtml = `
 <!DOCTYPE html>
@@ -38,16 +32,20 @@ const cookieHtml = `
 </body>
 </html>`;
 
+// app.use(basicAuthMiddleware);
+
 app.use(cookieParser());
 app.use(cookieCheckMiddleware);
 app.use(express.urlencoded({ extended: true }));
+app.get("/Pane", basicAuthMiddleware);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (request, response) => {
-    response.send(htmlRes);
+    response.send("Home Page");
 });
 app.get("/cookie", (request, response) => {
     response.send(cookieHtml);
 });
 app.post("/cookie", cookieHandler);
+
 app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));

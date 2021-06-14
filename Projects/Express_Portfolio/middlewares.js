@@ -1,4 +1,7 @@
+const basicAuth = require("basic-auth");
 var userURL;
+const userName = "milado";
+const UserPass = "miladi";
 
 const cookieCheckMiddleware = (request, response, next) => {
     if (request.cookies.accepted || request.url === "/cookie") {
@@ -16,4 +19,21 @@ const cookieHandler = (request, response) => {
     }
 };
 
-module.exports = { cookieCheckMiddleware, cookieHandler };
+const basicAuthMiddleware = (request, response, next) => {
+    const credentials = basicAuth(request);
+    console.log(credentials);
+    if (
+        !credentials ||
+        credentials.name !== userName ||
+        credentials.pass !== UserPass
+    ) {
+        response.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to proceed."'
+        );
+        response.sendStatus(401);
+        return;
+    }
+    next();
+};
+module.exports = { cookieCheckMiddleware, cookieHandler, basicAuthMiddleware };
