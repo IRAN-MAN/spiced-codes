@@ -1,0 +1,11 @@
+<section class="project-list">
+    <h4>My Projects</h4>
+    {{>projectList}}
+</section>
+<section class="project-details">
+    <h1>{{match.title}}</h1>
+    <img src="{{ match.img_path }}" alt="{{ match.title }}">    
+    <p>{{ match.description }}</p>
+    <a href="{{ match.directory }}"><li>Launch</li></a>
+</section>
+
