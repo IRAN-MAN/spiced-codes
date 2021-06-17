@@ -1,6 +1,9 @@
 const https = require("https");
+const fs = require("fs");
+const path = require("path");
 
 const { Key, Secret } = require("./secrets.json");
+const rawTweets = require("./rawTweets.json");
 
 const getAuthHeader = () => Buffer.from(`${Key}:${Secret}`).toString("base64");
 
@@ -16,18 +19,22 @@ const getTokenParams = {
 };
 
 // prepare a makeRequest function (like spotify example but with requestBody for method POSt)
+// we use it to make request for getting token and tweets
 const makeRequest = (requestParams, requestBody, responseCallback) => {
     // console.log("[Request Headers]", requestParams);
 
     //parameters validation
     if (!requestParams.host) {
         responseCallback(new Error("host data is missing"));
+        return;
     }
     if (!requestParams.method) {
         responseCallback(new Error("method data is missing"));
+        return;
     }
     if (!requestParams.path) {
         responseCallback(new Error("path data is missing"));
+        return;
     }
     // define callback function for https.request
     const requestCallback = (response) => {
@@ -82,18 +89,26 @@ getTwitterToken((error, TwitterToken) => {
     const screenName = "BBCNews";
     const tweetCount = 3;
 
-    // use the getTweets function after getting the token
+    // use the getTweets function after getting the token (defined in line 101)
     getTweets(screenName, tweetCount, TwitterToken, (error, tweets) => {
         if (error) {
             console.log(error);
+            return;
         }
         // the length must be equal to tweetCount!
-        console.log("[Tweets]", tweets.length);
+        // console.log("[Tweets]", tweets);
+
+        // create a JSON file from the tweets to to use for extracting information we need
+        fs.writeFile(
+            path.join(__dirname, "rawTweets.json"),
+            JSON.stringify(tweets, null, 4),
+            (error) => true
+        );
     });
     // console.log("[Token]", token);
 });
 
-//define getTweets function to make a request to api to get the tweets
+//define getTweets function to make a request to api to get the tweets (usage in line 90)
 const getTweets = (screenName, tweetCount, TwitterToken, callback) => {
     const queryString = `screen_name=${screenName}&tweet_mode=extended&count=${tweetCount}&exclude_replies=true`;
 
@@ -115,3 +130,44 @@ const getTweets = (screenName, tweetCount, TwitterToken, callback) => {
         callback(null, tweets);
     });
 };
+
+const extractURLFromTweets = (tweet) => {
+    // check if any part of the entities is undefined then return null
+    if (!tweet.entities) {
+        return null;
+    }
+    if (!tweet.entities.urls) {
+        return null;
+    }
+    if (!tweet.entities.urls[0].url) {
+        return null;
+    }
+
+    // return the url used in tweet
+    const url = tweet.entities.urls[0].url;
+    return url;
+};
+
+// define specific function to extract text from the tweet without url
+const extractTextFromTweets = (tweet, url) => {
+    let text = tweet.full_text.replace(url, "");
+    return text.split("https")[0].trim();
+};
+
+//// define specific function to extract url from the tweet
+const extractInfoFromRawTweets = (rawTweets) => {
+    // console.log(rawTweets);
+
+    // map through the json file and retrieve text and url from the file
+    return rawTweets.map((tweet) => {
+        // usage of isolated functions to retrieve url and text from the raw tweet json file
+        const url = extractURLFromTweets(tweet);
+        // the final object with text and url to use in ticker project
+        return {
+            text: extractTextFromTweets(tweet, url),
+            url,
+        };
+    });
+};
+
+console.log(extractInfoFromRawTweets(rawTweets));
