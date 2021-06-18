@@ -14,7 +14,12 @@ app.get("/links.json", (request, response) => {
         getNewsHeadlines("BBCNews", 3),
     ]);
 
-    tweetsRequests.then((allTweets) => response.json(allTweets.flat()));
+    tweetsRequests.then((allTweets) => {
+        const sortedTweets = allTweets.flat().sort((a, b) => {
+            return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;
+        });
+        response.json(sortedTweets);
+    });
 });
 
 app.listen(PORT, () => console.log(`Server is listening on Port: ${PORT}`));

@@ -1,15 +1,8 @@
 const extractURLFromTweets = (tweet) => {
-    // check if any part of the entities is undefined then return null
-    if (!tweet.entities) {
-        return null;
-    }
-    if (!tweet.entities.urls) {
-        return null;
-    }
     // console.log(tweet.entities.urls);
 
     // return the url used in tweet
-    const url = tweet.entities.urls[0]?.url;
+    const url = tweet.entities.urls[0].url;
     return url;
 };
 
@@ -32,6 +25,7 @@ const extractInfoFromRawTweets = (rawTweets, screenName) => {
             return {
                 title: `${extractTextFromTweets(tweet, url)} (${screenName}) `,
                 url,
+                created_at: tweet.created_at,
             };
         });
 };

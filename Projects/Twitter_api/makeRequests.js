@@ -4,7 +4,7 @@ const { Key, Secret } = require("./secrets.json");
 const { extractInfoFromRawTweets } = require("./Tweets-Proccessors.js");
 
 const getAuthHeader = () => Buffer.from(`${Key}:${Secret}`).toString("base64");
-
+let token = null;
 // neccessary params for making a request to api to get the Token(usage line 63)
 const getTokenParams = {
     method: "POST",
@@ -42,9 +42,9 @@ const makeRequestPromisified = (requestParams, requestBody) => {
             response
                 .on("data", (chunk) => (responseBody += chunk))
                 .on("end", () => {
-                    // console.log("[Request Callback: body from response-on end]");
                     try {
                         const parsedBody = JSON.parse(responseBody);
+                        // console.log(parsedBody);
                         resolve(parsedBody);
                     } catch (error) {
                         reject(new Error("JSON Parse error"));
@@ -62,11 +62,21 @@ const makeRequestPromisified = (requestParams, requestBody) => {
 
 // define getToken function to make request to api and get the token
 const getTwitterTokenPromisified = () => {
-    return makeRequestPromisified(
-        getTokenParams,
-        "grant_type=client_credentials"
-    ).then((tokenData) => {
-        return tokenData.access_token;
+    //make sure to get the token only once
+    return new Promise((resolve) => {
+        if (token) {
+            console.log("[token was there]", token);
+            resolve(token);
+            return;
+        }
+        makeRequestPromisified(
+            getTokenParams,
+            "grant_type=client_credentials"
+        ).then((tokenData) => {
+            token = tokenData.access_token;
+            console.log("[Token wasnt there]", token);
+            resolve(token);
+        });
     });
 };
 
