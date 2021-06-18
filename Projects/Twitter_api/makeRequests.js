@@ -92,7 +92,7 @@ const getTweets = (screenName, tweetCount, TwitterToken) => {
 const getNewsHeadlines = (screenName, tweetCount) => {
     return getTwitterTokenPromisified()
         .then((token) => getTweets(screenName, tweetCount, token))
-        .then((rawTweets) => extractInfoFromRawTweets(rawTweets));
+        .then((rawTweets) => extractInfoFromRawTweets(rawTweets, screenName));
 };
 
 module.exports = { getNewsHeadlines };

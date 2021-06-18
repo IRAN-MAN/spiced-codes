@@ -20,7 +20,7 @@ const extractTextFromTweets = (tweet, url) => {
 };
 
 //// define specific function to extract url from the tweet
-const extractInfoFromRawTweets = (rawTweets) => {
+const extractInfoFromRawTweets = (rawTweets, screenName) => {
     // console.log(rawTweets);
 
     return rawTweets
@@ -30,7 +30,7 @@ const extractInfoFromRawTweets = (rawTweets) => {
             const url = extractURLFromTweets(tweet);
             // the final object with text and url to use in ticker project
             return {
-                title: extractTextFromTweets(tweet, url),
+                title: `${extractTextFromTweets(tweet, url)} (${screenName}) `,
                 url,
             };
         });
